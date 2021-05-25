@@ -1,0 +1,54 @@
+extends layout 
+
+block content
+    .row.banner
+        .col-12
+            h3 Edit Users 
+    .row
+        .col-sm-10
+            .panel-body
+                table.table
+                    thead
+                        th ID
+                        th name
+                        th login name
+                        th role
+                        th 
+                    tbody
+                    each user in users
+                        tr
+                            td #{user.user_id}
+                            td #{user.name}
+                            td #{user.login || '-'}
+                            td
+                                div(class="dropdown")
+                                    a.btn.btn-secondary.dropdown-toggle(data-toggle="dropdown", href="#", role="button", id="dropdownMenuLink") 
+                                        span(id='urole_' + user.user_id) #{user.role}
+                                        | &nbsp;
+                                        //span.caret
+                                    ul(class="dropdown-menu")
+                                        li
+                                            <a class="nrole"  href="#" rel="/adm/setuserrole/#{user.user_id}/admin">admin</a>
+                                        li
+                                            <a class="nrole"  href="#" rel="/adm/setuserrole/#{user.user_id}/user">user</a>
+
+
+
+    script(type="text/javascript").
+        $(".nrole").click(function () {
+            $.ajax({
+                dataType: 'json',
+                type: 'GET',
+                url: $(this).prop('rel'),
+                data: null,
+                success: function (data) {
+                    if (data.result === true) {
+                        $("#urole_" + data.userId).text(data.role);
+                    }
+                }
+            });
+        });
+
+                 
+
+                   

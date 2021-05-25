@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1= pageHeader.ti
+
+  .row
+    .col-12.col-md-8
+      form.needs-validation(action="/submitform", method="post", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for='name') Name
+          .col-12.col-sm-10
+            input#name.form-control( type='text', name='name')
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for='student_id') Student ID
+          .col-12.col-sm-10
+            input#student_id.form-control(name='student_id')
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="department ") Department
+          .col-12.col-sm-10
+            textarea#department.form-control(name="department")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="email") Email
+          .col-12.col-sm-10
+            textarea#email.form-control(name="email")
+        button.btn.btn-primary.float-right Submit
+    .col-12.col-md-4
+           

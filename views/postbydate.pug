@@ -1,0 +1,28 @@
+extends layout
+
+
+block content
+  .row.banner
+    .col-12
+      h1= pageHeader.title
+        small &nbsp;#{pageHeader.strapLine}
+
+  .row
+    .col-12.col-md-8
+      each post in posts
+        .card
+          .card-block
+            h4
+              a(href=`/post/${post.post_id}`) #{post.title}
+              span.badge.badge-pill.badge-default.float-right
+                  i(class="icon-calendar")
+                    = moment(post.time_stamp).format(" DD MMMM YYYY, dddd")
+            p= post.about
+            p= post.detail_information
+            
+    .col-12.col-md-4
+      form.needs-validation(action=`/user/postsearch/${post.time_stamp}`, method="GET", role="form")
+        label.col-10.col-sm-2.col-form-label(for="event_date")
+          .col-12.col-sm-10
+            <input type="date" name="event_date" placeholder="dd-mm-yyyy">
+        button.btn.btn-primary.float-right Search

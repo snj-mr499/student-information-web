@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      
+
+  .row
+    .col-12.col-md-8
+      form.needs-validation(action=`/adm/lists/${post.post_id}`, method="POST", role="form")
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for='title') Title
+          .col-12.col-sm-10
+            input#title.form-control( type='text', name='title', value= post.title)
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for='about') About Post
+          .col-12.col-sm-10
+            input#about.form-control(name='about', value= post.about)
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="detail_information ") Detail Information
+          .col-12.col-sm-10
+            textarea#detail_information.form-control(name="detail_information", rows="5", value= post.detail_information)
+        .form-group.row
+          label.col-10.col-sm-2.col-form-label(for="upload_pic") Upload Picture (only jpg, png, gif)
+          .col-12.col-sm-10
+            <input type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg" />
+        button.btn.btn-primary.float-right Update
+    .col-12.col-md-4
+           

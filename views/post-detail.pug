@@ -1,0 +1,40 @@
+extends layout
+
+
+block content
+  .row.banner
+    .col-12
+  .row
+    .col-12.col-lg-9
+      .row
+        .col-12.col-md-6
+         
+          .card.card-primary
+            .card-block
+            h2.card-title Post Title
+            p.card-text= post.title
+
+          .card.card-primary
+            .card-block
+            h2.card-title About Post
+            p.card-text= post.about
+
+        .col-12.col-md-6
+          .card.card-primary 
+            .card-block 
+              i(class="icon-calendar")
+                  = moment(post.time_stamp).format(" DD MMMM YYYY, dddd") 
+            
+              
+        .col-12
+          .card.card-primary.review-card
+            .card-block
+              h2.card-title Detail Information
+                .row.review 
+                  .col-12
+              p !{(post.detail_information).replace(/\n/g, '<br/>')}
+                
+                    
+    .col-12.col-lg-3     
+ 
+        

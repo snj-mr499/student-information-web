@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    .row.banner
+        .col-12
+            h1= pageHeader.ti
+
+            div(style="text-align:center; margin-top:5%;")
+                img(src="/img/c3.jpg", border="0")
+            div(style="padding: 0px 38%; margin-top: -180px;")
+                form.form-horizontal(method="post", action="/auth/local")
+                    div.form-group
+                        div.col-lg-12
+                            input.form-control(type="text", value="", name="username", placeholder="Login")
+                    div.form-group
+                        div.col-lg-12
+                            input.form-control(type="password", value="", name="password", placeholder="Password")
+                    div.form-group
+                        div.col-lg-12
+                            button(type="submit", class="btn btn-default") Login
+
+                   
+                    if (locals.authErr == 'passport-error')
+                        div.control-group
+                            label(class="label label-danger") Login or password is wrong
+                div.clearfix
+
+

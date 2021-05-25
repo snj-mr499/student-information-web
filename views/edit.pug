@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    .row.banner
+        .col-12
+            h3 Edit Posts 
+    .row
+        .col-sm-10
+            .panel-body 
+                table.table 
+                    thead 
+                        tr 
+                            th(scope="col") Post Title
+                            th(scope="col") About Post/ Place 
+                            th(scope="col") Action 
+                    tbody
+                        each post in posts 
+                            tr
+                                td= post.title 
+                                td= post.about 
+                                td
+                                    ul.list-inline.m-0 
+                                        li.list-inline-item 
+                                            a(href=`/adm/lists/${post.post_id}`).fa.fa-edit
+                                        li.list-inline-item
+                                            form.needs-validation(action=`/adm/lists/${post.post_id}`, method="POST")
+                                                <input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')"/>
+                                                <input type="hidden" name="_method" value="DELETE" />

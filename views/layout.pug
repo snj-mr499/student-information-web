@@ -1,0 +1,81 @@
+doctype html
+html
+    head
+        block head
+            title
+                if (locals.fullTitle)
+                    = fullTitle
+                else
+                    = getAppConfig('blog_name', 'Student Information')
+                if (locals.title)
+                    |  - #{title} 
+            meta(name='viewport', content='width=device-width, initial-scale=1.0')
+            title= title
+            link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+            link(rel='stylesheet', href='/awesome/css/font-awesome.min.css')
+            link(rel='stylesheet', href='/stylesheets/all.min.css')
+            link(rel='stylesheet', href='/stylesheets/style.css')
+            link(rel='stylesheet', href='/highlight.js/github.css')
+            meta(name="description", content=getAppConfig('global_description', 'simple node blog'))    
+    body
+        nav.navbar.fixed-top.navbar-expand-md.navbar-light
+            .container
+                h2#title 
+                    a(href='/')
+                        //!= getAppConfig('blog_name','Student Info')  img(src="/img/IC-logo.png", border="0")
+                        //!= getAppConfig('blog_name', )
+                        img(src="/img/IC-logo.png", border="0", width="145" height="50")
+                .login-toplink.pull-right 
+                    if (!locals.userInfo || !userInfo.auth)
+                        a(href="https://ic.payap.ac.th/")
+                            | &nbsp;IC Website
+                        | &nbsp;
+                        a(href="https://reg.payap.ac.th/registrar/home.asp")
+                            | &nbsp;Reg
+                        | &nbsp;
+                        a(href='/submitform/')
+                            | &nbsp;Sign Up 
+                        | &nbsp;
+                        a(href='/web/')
+                            | &nbsp; About 
+                        | &nbsp;
+
+                        a(href="/login/", type="button" class="btn btn-light") Login 
+                    else 
+                        = userInfo.name 
+                        | &nbsp;
+            
+                    if (locals.userInfo.role == 'admin')
+                        | &nbsp;
+                        a(href='/adm/posts/')
+                            i(class="icon-list-alt black-icon")
+                            | &nbsp;New
+                        | &nbsp;
+                        a(href='/adm/lists/')
+                            i(class="icon-edit black-icon")
+                            | &nbsp;Edit
+                        | &nbsp;
+                        a(href="/adm/users/")
+                            i(class="icon-user black-icon")
+                            | &nbsp;Users
+                        | &nbsp;
+                        a(href="/logout/", type="button" class="btn btn-light") Logout
+          
+                    else if (locals.userInfo && userInfo.auth)
+                        | &nbsp;                            
+                        a(href='/post/') 
+                            i(class="icon-list-alt black-icon")
+                            | &nbsp; Post
+                        a(href="/logout/", type="button" class="btn btn-light") Logout                
+    .container.content
+      block content
+     
+      footer
+        .row
+          .col-12
+            small &copy; Payap IC Student Website 2021
+    
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
+    script(src='/javascripts/bootstrap.min.js')
+    script(type="text/javascript", src="/highlight.js/highlight.pack.js").

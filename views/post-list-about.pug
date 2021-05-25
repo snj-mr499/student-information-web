@@ -1,0 +1,23 @@
+extends layout
+
+
+block content
+  .row.banner
+    .col-12
+      h1= pageHeader.title
+        small &nbsp;#{pageHeader.strapLine}
+
+  .row
+    .col-12.col-md-8
+      each post in posts
+        .card
+          .card-block
+            h4
+              a(href=`/${post.post_id}`) #{post.title}
+            p= post.about
+            p= post.detail_information
+            
+
+
+    .col-12.col-md-4
+      p.lead= sidebar
