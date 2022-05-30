@@ -1,4 +1,4 @@
-# senior-project-web
+# Student information website
 
 ## Create Database first 
 ```
