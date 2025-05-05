@@ -59,7 +59,7 @@ CREATE TABLE `reg` (
 ```
 node app.js 
 or 
-npm install nodemon then
+npm install nodemon
 npm start
 ```
 ## To login 
